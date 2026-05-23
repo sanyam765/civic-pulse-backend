@@ -18,8 +18,8 @@ if (!process.env.NODE_ENV) {
 const allowedOrigins = [
   'http://localhost:5173',  // Local development
   'http://localhost:3000',  // Alternative local
-  'https://civic-pulse.vercel.app',  // Your production frontend URL (update this!)
-  'https://civic-pulse-*.vercel.app'  // Vercel preview deployments
+  'https://civic-pulse-frontend-ashen.vercel.app',  // Your production frontend URL (update this!)
+  // Vercel preview deployments
 ]
 
 app.use(cors({
