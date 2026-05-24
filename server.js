@@ -14,7 +14,7 @@ app.use(cors())
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Connect to MongoDB
