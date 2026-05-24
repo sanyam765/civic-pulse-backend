@@ -14,30 +14,18 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
 }
 
-// CORS - Restrict to frontend URL
+// CORS - Allow Vercel frontend
 const allowedOrigins = [
   'http://localhost:5173',  // Local development
   'http://localhost:3000',  // Alternative local
-  'https://civic-pulse-frontend-ashen.vercel.app',  // Your production frontend URL (update this!)
-  // Vercel preview deployments
+  'https://civic-pulse-frontend-ashen.vercel.app',  // Production frontend
 ]
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
-    if (!origin) return callback(null, true)
-    
-    if (allowedOrigins.some(allowed => {
-      // Support wildcard matching
-      const pattern = new RegExp('^' + allowed.replace(/\*/g, '.*') + '$')
-      return pattern.test(origin)
-    })) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  credentials: true
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
 // Security headers
