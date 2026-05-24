@@ -47,6 +47,11 @@ mongoose.connect(process.env.MONGO_URI)
     console.error("❌ MongoDB connection error:", err.message)
   });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() })
+})
+
 app.use('/api/auth', authRoutes)
 app.use('/api/complaints', complaintRoutes)
 
