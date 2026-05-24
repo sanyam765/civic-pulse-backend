@@ -15,18 +15,15 @@ if (!process.env.NODE_ENV) {
 }
 
 // CORS - Allow Vercel frontend
-const allowedOrigins = [
-  'http://localhost:5173',  // Local development
-  'http://localhost:3000',  // Alternative local
-  'https://civic-pulse-frontend-ashen.vercel.app',  // Production frontend
-]
-
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: '*',
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+// Explicitly handle preflight requests
+app.options('*', cors())
 
 // Security headers
 app.use((req, res, next) => {
