@@ -9,13 +9,13 @@ const complaintRoutes = require('./routes/complaintRoutes')
 
 const app = express();
 
-// Simple CORS - allow all origins
+
 app.use(cors({
     origin: "https://civic-pulse-frontend-ashen.vercel.app",
     credentials:true
 }));
 
-// Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
